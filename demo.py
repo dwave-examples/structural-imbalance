@@ -6,12 +6,10 @@ import dwave_qbsolv as qbsolv
 import dwave_networkx as dnx
 
 try:
-    import dwave_sapi2
-    import dwave_sapi_dimod as sapi
-    from sapi_token import url, token, solver_name
-    _sapi = True
+    import dwave_micro_client_dimod as system
+    _system = True
 except ImportError:
-    _sapi = False
+    _system = False
 
 import dwave_structural_imbalance_demo as sbdemo
 
@@ -89,9 +87,9 @@ if __name__ == '__main__':
     # get a sampler
     sampler = qbsolv.QBSolv()
 
-    if _sapi:
+    if _system:
         print("Running on the QPU")
-        subsolver = sapi.EmbeddingComposite(sapi.SAPISampler(solver_name, url, token))
+        subsolver = system.EmbeddingComposite(system.DWaveSampler())
     else:
         print("Running classically")
         subsolver = None
