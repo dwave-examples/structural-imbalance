@@ -1,9 +1,9 @@
-.. image:: https://circleci.com/gh/dwavesystems/structural-imbalance-demo.svg?style=svg
-    :target: https://circleci.com/gh/dwavesystems/structural-imbalance-demo
-
 **WARNING**: This Structural Imbalance demo has been relocated to and will be maintained in the
 `dwavesystems/demos <https://github.com/dwavesystems/demos/tree/master/structural-imbalance>`_
 repo. The existing repository seen on this page will no longer be updated.
+
+.. image:: https://circleci.com/gh/dwavesystems/structural-imbalance-demo.svg?style=svg
+    :target: https://circleci.com/gh/dwavesystems/structural-imbalance-demo
 
 Demo of Structural Imbalance in Signed Social Networks
 ======================================================
