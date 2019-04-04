@@ -1,4 +1,4 @@
-**ATTENTION**: This repository is obsolete. The Structural Imbalance demo is now maintained in
+**WARNING**: This repository is obsolete. The Structural Imbalance demo is now maintained in
 `dwavesystems/demos <https://github.com/dwavesystems/demos/tree/master/structural-imbalance>`_.
 
 .. image:: https://circleci.com/gh/dwavesystems/structural-imbalance-demo.svg?style=svg
