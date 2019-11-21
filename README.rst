@@ -1,5 +1,5 @@
 **WARNING**: This repository is obsolete. The Structural Imbalance demo is now maintained in
-`dwavesystems/demos <https://github.com/dwavesystems/demos/tree/master/structural-imbalance>`_.
+`dwavesystems/demos <https://github.com/dwave-examples/structural-imbalance>`_.
 
 .. image:: https://circleci.com/gh/dwavesystems/structural-imbalance-demo.svg?style=svg
     :target: https://circleci.com/gh/dwavesystems/structural-imbalance-demo
