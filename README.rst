@@ -56,5 +56,5 @@ http://web.stanford.edu/group/mappingmilitants/cgi-bin/.
 
 License
 -------
-Released under the Apache License 2.0. See `LICENSE <../LICENSE>`_ file.
+Released under the Apache License 2.0. See `LICENSE <LICENSE>`_ file.
 
