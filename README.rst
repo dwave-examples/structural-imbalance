@@ -1,5 +1,6 @@
-Demo of Structural Imbalance in Signed Social Networks
-======================================================
+==============================================
+Structural Imbalance in Signed Social Networks
+==============================================
 *Social networks* map relationships between people or organizations onto graphs, with
 the people/organizations as nodes and relationships as edges; for example,
 Facebook friends form a social network with friends represented as
