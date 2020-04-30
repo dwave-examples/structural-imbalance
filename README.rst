@@ -57,12 +57,15 @@ Note that this CLI command runs the entire demo and can take a few minutes to
 complete. You can easily modify the code to run just parts of the demo from
 within a Python interpreter.
 
+License
+-------
+The translation and solving code is released under the Apache License 2.0. See
+`LICENSE <LICENSE>`_ file.
+
+The dataset is used with permission from the Stanford Militants Mapping
+Project.
+
 References
 ----------
 Mapping Militant Organizations, Stanford University, last modified February 28,
 2016, http://web.stanford.edu/group/mappingmilitants/cgi-bin/.
-
-License
--------
-Released under the Apache License 2.0. See `LICENSE <LICENSE>`_ file.
-
