@@ -19,66 +19,36 @@ import os
 
 class IntegrationTests(unittest.TestCase):
 
-    def setUp(self):
-        self.verificationErrors = []
-        self.output=None
-
-    def VerifyErrors(self,output):
-
-        try: 
-            self.assertNotIn("ERROR",output.upper() )
-        except AssertionError as e:
-            print("Verify if error string contains in output failed \n")
-            self.verificationErrors.append(str(e))
-
-        try: 
-            self.assertNotIn("WARNING",output.upper() )
-        except AssertionError as e:
-            print("Verify if warning string contains in output failed \n")
-            self.verificationErrors.append(str(e))
-
     def runDemo(self,hardware):
         cwd=os.getcwd()
-        self.output=subprocess.check_output(["python", cwd+"/demo.py", hardware])
-        self.output=str(self.output)
+        output=subprocess.check_output(["python", cwd+"/demo.py", hardware])
+        return str(output)
 
     def test_structural_imbalance_cpu(self):
-        self.runDemo("cpu")
 
-        print("Example output \n"+self.output)
-        try: 
-            self.assertIn("Running demo on cpu",self.output )
-        except AssertionError as e:
-            print("Test structural_imbalance example verification failed \n")
-            self.verificationErrors.append(str(e))
+        output = self.runDemo("cpu")
 
-        try: 
-            self.assertIn("Created CSV file: Results/Global/Structural Imbalance.csv",self.output )
-        except AssertionError as e:
-            print("Test structural_imbalance example verification failed \n")
-            self.verificationErrors.append(str(e))
-
-        self.VerifyErrors(self.output)
+        with self.subTest(msg="Verify if output contains 'Created CSV file: Results/Global/Structural Imbalance.csv' \n"):
+            self.assertIn("Created CSV file: Results/Global/Structural Imbalance.csv".upper(),output.upper())
+        with self.subTest(msg="Verify if output contains 'Running demo on cpu' \n"):
+            self.assertIn("Running demo on cpu".upper(),output.upper())
+        with self.subTest(msg="Verify if error string contains in output \n"):
+            self.assertNotIn("ERROR",output.upper())
+        with self.subTest(msg="Verify if warning string contains in output \n"):
+            self.assertNotIn("WARNING",output.upper())
 
     def test_structural_imbalance_qpu(self):
-        self.runDemo("qpu")
-        print("Example output \n"+self.output)
-        try: 
-            self.assertIn("Running demo on qpu",self.output )
-        except AssertionError as e:
-            print("Test structural_imbalance example verification failed \n")
-            self.verificationErrors.append(str(e))
+        
+        output = self.runDemo("qpu")
 
-        try: 
-            self.assertIn("Created CSV file: Results/Global/Structural Imbalance.csv",self.output )
-        except AssertionError as e:
-            print("Test structural_imbalance example verification failed \n")
-            self.verificationErrors.append(str(e))
-
-        self.VerifyErrors(self.output)
-
-    def tearDown(self):
-        self.assertEqual([], self.verificationErrors)
+        with self.subTest(msg="Verify if output contains 'Created CSV file: Results/Global/Structural Imbalance.csv' \n"):
+            self.assertIn("Created CSV file: Results/Global/Structural Imbalance.csv".upper(),output.upper())
+        with self.subTest(msg="Verify if output contains 'Running demo on qpu' \n"):
+            self.assertIn("Running demo on qpu".upper(),output.upper())
+        with self.subTest(msg="Verify if error string contains in output \n"):
+            self.assertNotIn("ERROR",output.upper())
+        with self.subTest(msg="Verify if warning string contains in output \n"):
+            self.assertNotIn("WARNING",output.upper())
 
 if __name__ == '__main__':
     unittest.main()
