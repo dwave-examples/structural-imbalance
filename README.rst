@@ -1,3 +1,7 @@
+.. image:: https://circleci.com/gh/dwave-examples/structural-imbalance.svg?style=svg
+    :target: https://circleci.com/gh/dwave-examples/structural-imbalance
+    :alt: Linux/Mac/Windows build status
+
 ==============================================
 Structural Imbalance in Signed Social Networks
 ==============================================
