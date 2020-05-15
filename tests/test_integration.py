@@ -16,39 +16,48 @@ import subprocess
 import unittest
 import time
 import os
+import sys
+
+project_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 class IntegrationTests(unittest.TestCase):
 
     def runDemo(self,hardware):
-        cwd=os.getcwd()
-        output=subprocess.check_output(["python", cwd+"/demo.py", hardware])
+        demo_file = os.path.join(project_dir, 'demo.py')
+        output=subprocess.check_output([sys.executable, demo_file, hardware])
         return str(output)
 
     def test_structural_imbalance_cpu(self):
 
         output = self.runDemo("cpu")
+        output = str(output).upper()
+        if os.getenv('DEBUG_OUTPUT'):
+            print("Example output \n"+ output)
 
         with self.subTest(msg="Verify if output contains 'Created CSV file: Results/Global/Structural Imbalance.csv' \n"):
-            self.assertIn("Created CSV file: Results/Global/Structural Imbalance.csv".upper(),output.upper())
+            self.assertIn("Created CSV file: Results/Global/Structural Imbalance.csv".upper(), output)
         with self.subTest(msg="Verify if output contains 'Running demo on cpu' \n"):
-            self.assertIn("Running demo on cpu".upper(),output.upper())
+            self.assertIn("Running demo on cpu".upper(), output)
         with self.subTest(msg="Verify if error string contains in output \n"):
-            self.assertNotIn("ERROR",output.upper())
+            self.assertNotIn("ERROR", output)
         with self.subTest(msg="Verify if warning string contains in output \n"):
-            self.assertNotIn("WARNING",output.upper())
+            self.assertNotIn("WARNING", output)
 
     def test_structural_imbalance_qpu(self):
         
         output = self.runDemo("qpu")
+        output = str(output).upper()
+        if os.getenv('DEBUG_OUTPUT'):
+            print("Example output \n"+ output)
 
         with self.subTest(msg="Verify if output contains 'Created CSV file: Results/Global/Structural Imbalance.csv' \n"):
-            self.assertIn("Created CSV file: Results/Global/Structural Imbalance.csv".upper(),output.upper())
+            self.assertIn("Created CSV file: Results/Global/Structural Imbalance.csv".upper(), output)
         with self.subTest(msg="Verify if output contains 'Running demo on qpu' \n"):
-            self.assertIn("Running demo on qpu".upper(),output.upper())
+            self.assertIn("Running demo on qpu".upper(), output)
         with self.subTest(msg="Verify if error string contains in output \n"):
-            self.assertNotIn("ERROR",output.upper())
+            self.assertNotIn("ERROR", output)
         with self.subTest(msg="Verify if warning string contains in output \n"):
-            self.assertNotIn("WARNING",output.upper())
+            self.assertNotIn("WARNING", output)
 
 if __name__ == '__main__':
     unittest.main()
