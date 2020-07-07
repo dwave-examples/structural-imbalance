@@ -5,7 +5,7 @@ import datetime
 import networkx as nx
 
 
-def global_signed_social_network():
+def global_signed_social_network(region='global'):
     """Return the global network for the Militant's Mapping Project.
 
     Reference:
@@ -21,6 +21,7 @@ def global_signed_social_network():
         'Firqat al-Sultan Murad targets the Islamic State.'
 
     """
+
     # create a new empty graph for everything
     S = nx.Graph()
 
@@ -93,5 +94,12 @@ def global_signed_social_network():
 
             if group_id in S:
                 S.nodes[group_id]['map'] = map_name
+
+    if region != 'global':
+        # filter by region name
+        nodes = [v for v, datum in S.nodes(data=True)
+                 if datum.get('map', '').lower() == region.lower()]
+
+        S = S.subgraph(nodes)
 
     return S
