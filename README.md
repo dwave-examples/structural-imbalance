@@ -1,10 +1,9 @@
-.. image:: https://circleci.com/gh/dwave-examples/structural-imbalance.svg?style=svg
-    :target: https://circleci.com/gh/dwave-examples/structural-imbalance
-    :alt: Linux/Mac/Windows build status
+[![Linux/Mac/Windows build status](
+  https://circleci.com/gh/dwave-examples/structural-imbalance.svg?style=svg)](
+  https://circleci.com/gh/dwave-examples/structural-imbalance)
 
-==============================================
-Structural Imbalance in Signed Social Networks
-==============================================
+# Structural Imbalance in Signed Social Networks
+
 *Social networks* map relationships between people or organizations onto
 graphs, with the people/organizations as nodes and relationships as edges; for
 example, Facebook friends form a social network with friends represented as
@@ -16,42 +15,36 @@ friendly relations (represented by positive-valued edges) in each faction, and
 hostile relations (negative-valued edges) between these factions.
 
 The measure of *structural imbalance* or *frustration* for a signed social
-network
-is the minimum number of edges that violate this rule.
+network is the minimum number of edges that violate this rule.
 
-.. figure:: _static/Social.png
-  :name: social
-  :alt: Three-person social network
+![Three-person social network](_static/Social.png)
 
 Social theory suggests that increased frustration predicts social instability.
 In the context of militant organizations, this can result in increased
 violence.
 
 This demo calculates and shows structural imbalance for social networks of
-militant organization based on data from the `Stanford Militants Mapping
-Project <http://web.stanford.edu/group/mappingmilitants/cgi-bin/>`_.
+militant organization based on data from the [Stanford Militants Mapping
+Project](http://web.stanford.edu/group/mappingmilitants/cgi-bin/).
 
+## Usage
 
-Usage
------
 To run the demo, execute one of the following two commands:
 
-A. Local CPU Execution
-~~~~~~~~~~~~~~~~~~~~~~
+### A. Local CPU Execution
 
-.. code-block:: bash
+```bash
+python demo.py cpu
+```
 
-   python demo.py cpu
+### B. D-Wave System Execution
 
-B. D-Wave System Execution
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+```bash
+python demo.py qpu
+```
 
-.. code-block:: bash
+## Code Specifics
 
-   python demo.py qpu
-
-Code Specifics
---------------
 The demo fetches data from the Stanford Militants Mapping Project, calculates
 the networks, and saves PNG-formatted graphic files and CSV-formatted files in
 the root directory of your copy of the demo repository and in a Results
@@ -61,15 +54,15 @@ Note that this CLI command runs the entire demo and can take a few minutes to
 complete. You can easily modify the code to run just parts of the demo from
 within a Python interpreter.
 
-License
--------
+## License
+
 The translation and solving code is released under the Apache License 2.0. See
-`LICENSE <LICENSE>`_ file.
+[LICENSE](LICENSE) file.
 
 The dataset is used with permission from the Stanford Militants Mapping
 Project.
 
-References
-----------
+## References
+
 Mapping Militant Organizations, Stanford University, last modified February 28,
 2016, http://web.stanford.edu/group/mappingmilitants/cgi-bin/.
