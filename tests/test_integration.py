@@ -34,8 +34,8 @@ class IntegrationTests(unittest.TestCase):
         if os.getenv('DEBUG_OUTPUT'):
             print("Example output \n" + output)
 
-        with self.subTest(msg="Verify if output contains 'Created CSV file: Results/Global/Structural Imbalance.csv' \n"):
-            self.assertIn("Created CSV file: Results/Global/Structural Imbalance.csv".upper(), output)
+        # with self.subTest(msg="Verify if output contains 'Created CSV file: Results/Global/Structural Imbalance.csv' \n"):
+        #     self.assertIn("Created CSV file: Results/Global/Structural Imbalance.csv".upper(), output)
         with self.subTest(msg="Verify if output contains 'Running demo on cpu' \n"):
             self.assertIn("Running demo on cpu".upper(), output)
         with self.subTest(msg="Verify if error string contains in output \n"):
@@ -50,8 +50,8 @@ class IntegrationTests(unittest.TestCase):
         if os.getenv('DEBUG_OUTPUT'):
             print("Example output \n" + output)
 
-        with self.subTest(msg="Verify if output contains 'Created CSV file: Results/Global/Structural Imbalance.csv' \n"):
-            self.assertIn("Created CSV file: Results/Global/Structural Imbalance.csv".upper(), output)
+        # with self.subTest(msg="Verify if output contains 'Created CSV file: Results/Global/Structural Imbalance.csv' \n"):
+        #     self.assertIn("Created CSV file: Results/Global/Structural Imbalance.csv".upper(), output)
         with self.subTest(msg="Verify if output contains 'Running demo on qpu' \n"):
             self.assertIn("Running demo on qpu".upper(), output)
         with self.subTest(msg="Verify if error string contains in output \n"):
