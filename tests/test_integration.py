@@ -18,6 +18,8 @@ import time
 import os
 import sys
 
+from dwave_structural_imbalance_demo.interfaces import qpu_available
+
 project_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 class IntegrationTests(unittest.TestCase):
@@ -43,6 +45,7 @@ class IntegrationTests(unittest.TestCase):
         with self.subTest(msg="Verify if warning string contains in output \n"):
             self.assertNotIn("WARNING", output)
 
+    @unittest.skipUnless(qpu_available(), "requires QPU")
     def test_structural_imbalance_qpu(self):
         
         output = self.runDemo("qpu")
