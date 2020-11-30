@@ -28,7 +28,7 @@ def global_signed_social_network(region='global'):
     current_directory = os.path.dirname(__file__)
 
     links_file = os.path.join(current_directory, 'links.csv')
-    with open(links_file, 'r') as links:
+    with open(links_file, 'r', encoding='utf-8') as links:
         data_iter = csv.reader(links, delimiter=',')
 
         # skip descriptions line
