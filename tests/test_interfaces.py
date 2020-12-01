@@ -16,46 +16,59 @@ import unittest
 from random import randint, choice
 import jsonschema
 
+from . import qpu_available
 from dwave_structural_imbalance_demo.interfaces import GlobalSignedSocialNetwork
 from dwave_structural_imbalance_demo.json_schema import json_schema
 
 
 class TestInterfaces(unittest.TestCase):
-    gssn_qpu = GlobalSignedSocialNetwork(True)
-    gssn_cpu = GlobalSignedSocialNetwork(False)
+
+    @classmethod
+    def setUpClass(cls):
+        if qpu_available():
+            cls.gssn_qpu = GlobalSignedSocialNetwork(True)
+        cls.gssn_cpu = GlobalSignedSocialNetwork(False)
 
     def test_get_node_link_data_output(self):
         subgroup = choice(['Global', 'Syria', 'Iraq'])
         year = randint(2009, 2016)
-        output = self.gssn_qpu.get_node_link_data(subgroup, year)
+        output = self.gssn_cpu.get_node_link_data(subgroup, year)
         jsonschema.validate(output, json_schema)
 
-    def test_solve_structural_imbalance_output(self):
+    @unittest.skipUnless(qpu_available(), "requires QPU")
+    def test_solve_structural_imbalance_output_qpu(self):
         subgroup = 'Syria'
         year = 2013
-        output = self.gssn_qpu.solve_structural_imbalance(subgroup, year)
-        jsonschema.validate(output, json_schema)
         output = self.gssn_cpu.solve_structural_imbalance(subgroup, year)
         jsonschema.validate(output, json_schema)
 
-    def test_whole_embedding(self):
+    def test_solve_structural_imbalance_output_cpu(self):
+        subgroup = 'Syria'
+        year = 2013
+        output = self.gssn_cpu.solve_structural_imbalance(subgroup, year)
+        jsonschema.validate(output, json_schema)
+
+    @unittest.skipUnless(qpu_available(), "requires QPU")
+    def test_whole_embedding_qpu(self):
         self.gssn_qpu.solve_structural_imbalance()
+
+    def test_whole_embedding_cpu(self):
         self.gssn_cpu.solve_structural_imbalance()
 
     def test_invalid_subgroup(self):
         subgroup = 'unknown_subgroup'
-        self.assertRaises(KeyError, self.gssn_qpu.get_node_link_data, subgroup)
-        self.assertRaises(KeyError, self.gssn_qpu.solve_structural_imbalance, subgroup)
+        self.assertRaises(KeyError, self.gssn_cpu.get_node_link_data, subgroup)
+        self.assertRaises(KeyError, self.gssn_cpu.solve_structural_imbalance, subgroup)
 
     def test_invalid_year(self):
         year = 'not_an_integer'
-        self.assertRaises(ValueError, self.gssn_qpu.get_node_link_data, year=year)
-        self.assertRaises(ValueError, self.gssn_qpu.solve_structural_imbalance, year=year)
+        self.assertRaises(ValueError, self.gssn_cpu.get_node_link_data, year=year)
+        self.assertRaises(ValueError, self.gssn_cpu.solve_structural_imbalance, year=year)
 
     def test_year_zero(self):
         year = 0
-        output = self.gssn_qpu.get_node_link_data(year=year)
+        output = self.gssn_cpu.get_node_link_data(year=year)
         for result in output['results']:
             self.assertFalse(result['nodes'])
             self.assertFalse(result['links'])
-        self.assertRaises(ValueError, self.gssn_qpu.solve_structural_imbalance, year=year)
+        self.assertRaises(ValueError, self.gssn_cpu.solve_structural_imbalance, year=year)
