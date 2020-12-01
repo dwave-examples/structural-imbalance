@@ -18,7 +18,7 @@ import time
 import os
 import sys
 
-from dwave_structural_imbalance_demo.interfaces import qpu_available
+from . import qpu_available
 
 project_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 

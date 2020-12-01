@@ -1,5 +1,4 @@
 from collections import OrderedDict
-from functools import lru_cache
 
 import networkx as nx
 
@@ -9,8 +8,6 @@ from neal import SimulatedAnnealingSampler
 from dwave.system.composites import EmbeddingComposite
 from dwave.system.samplers import DWaveSampler
 import dwave.cloud.exceptions
-from dwave.cloud import Client
-from dwave.cloud.exceptions import ConfigFileError
 
 from dwave_structural_imbalance_demo.mmp_network import global_signed_social_network
 
@@ -20,18 +17,6 @@ if dnx._PY2:
 else:
     def iteritems(d): return d.items()
 
-
-@lru_cache(maxsize=None)
-def qpu_available():
-    """Check whether QPU solver is available"""
-    try:
-        with Client.from_config() as client:
-            solver = client.get_solver(qpu=True)
-    except (ConfigFileError, ValueError) as e:
-        return False
-    else:
-        return True
-        
 
 class GlobalSignedSocialNetwork(object):
     """A class encapsulating access to graphs from the Stanford Militants Mapping Project.

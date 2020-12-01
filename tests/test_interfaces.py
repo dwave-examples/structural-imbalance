@@ -16,7 +16,8 @@ import unittest
 from random import randint, choice
 import jsonschema
 
-from dwave_structural_imbalance_demo.interfaces import GlobalSignedSocialNetwork, qpu_available
+from . import qpu_available
+from dwave_structural_imbalance_demo.interfaces import GlobalSignedSocialNetwork
 from dwave_structural_imbalance_demo.json_schema import json_schema
 
 
