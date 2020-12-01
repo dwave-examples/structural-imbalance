@@ -47,10 +47,6 @@ def main(sampler_type, region, show):
         print("No solver selected, defaulting to hybrid")
         sampler_type = 'hybrid'
 
-    if region == 'global' and sampler_type == 'qpu':
-        print("Given region is too large for the QPU, please choose another "
-              "region or use hybrid.")
-
     # get the appropriate signed social network
     G = global_signed_social_network(region=region)
 
