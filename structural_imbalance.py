@@ -12,8 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import os
 import click
 import matplotlib
+if 'DISPLAY' not in os.environ:
+    # May not be necessary once Python 3.5 support is dropped
+    matplotlib.use("agg")
 import matplotlib.pyplot as plt
 
 import dwave_networkx as dnx
