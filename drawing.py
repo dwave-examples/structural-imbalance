@@ -12,8 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
-import os
 import matplotlib.pyplot as plt
 import networkx as nx
 
