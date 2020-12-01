@@ -17,7 +17,7 @@ import unittest
 import os
 import sys
 
-from . import qpu_available
+from tests import qpu_available
 
 project_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
