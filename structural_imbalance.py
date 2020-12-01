@@ -26,7 +26,7 @@ from neal import SimulatedAnnealingSampler
 from dwave.system import DWaveSampler, EmbeddingComposite, LeapHybridSampler
 
 from drawing import draw_social_network
-from dwave_structural_imbalance_demo.mmp_network import global_signed_social_network
+from mmp_network import global_signed_social_network
 
 
 @click.command()
