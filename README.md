@@ -34,25 +34,28 @@ To run the demo, execute one of the following two commands:
 ### A. Local CPU Execution
 
 ```bash
-python demo.py cpu
+python structural_imbalance.py --cpu
 ```
 
 ### B. D-Wave System Execution
 
 ```bash
-python demo.py qpu
+python structural_imbalance.py --qpu
 ```
 
 ## Code Specifics
 
 The demo fetches data from the Stanford Militants Mapping Project, calculates
-the networks, and saves PNG-formatted graphic files and CSV-formatted files in
-the root directory of your copy of the demo repository and in a Results
-subdirectory.
+the networks, and saves a PNG graphic file of the imbalance network in the root
+directory of your copy of the demo repository.
 
-Note that this CLI command runs the entire demo and can take a few minutes to
-complete. You can easily modify the code to run just parts of the demo from
-within a Python interpreter.
+Additional command line arguments are available to control the behavior of the
+demo, such as the region that is considered and whether to display a plot rather
+than saving a PNG file.  Information about the command options is available via:
+
+```bash
+python structural_imbalance.py --help
+```
 
 ## License
 

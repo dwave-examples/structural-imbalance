@@ -14,7 +14,13 @@
 
 import click
 import matplotlib
-import matplotlib.pyplot as plt
+# Trap errors with importing pyplot (for testing frameworks) and
+# specify "agg" backend
+try:
+    import matplotlib.pyplot as plt
+except ImportError:
+    matplotlib.use("agg")
+    import matplotlib.pyplot as plt
 
 import dwave_networkx as dnx
 
@@ -22,7 +28,7 @@ from neal import SimulatedAnnealingSampler
 from dwave.system import DWaveSampler, EmbeddingComposite, LeapHybridSampler
 
 from drawing import draw_social_network
-from dwave_structural_imbalance_demo.mmp_network import global_signed_social_network
+from mmp_network import global_signed_social_network
 
 
 @click.command()
@@ -42,10 +48,6 @@ def main(sampler_type, region, show):
     if sampler_type is None:
         print("No solver selected, defaulting to hybrid")
         sampler_type = 'hybrid'
-
-    if region == 'global' and sampler_type == 'qpu':
-        print("Given region is too large for the QPU, please choose another "
-              "region or use hybrid.")
 
     # get the appropriate signed social network
     G = global_signed_social_network(region=region)
