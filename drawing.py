@@ -14,10 +14,6 @@
 
 import sys
 import os
-import matplotlib
-if sys.platform == 'linux' and 'DISPLAY' not in os.environ:
-    # May not be necessary once Python 3.5 support is dropped
-    matplotlib.use("agg")
 import matplotlib.pyplot as plt
 import networkx as nx
 

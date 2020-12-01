@@ -16,10 +16,13 @@ import sys
 import os
 import click
 import matplotlib
-if sys.platform == 'linux' and 'DISPLAY' not in os.environ:
-    # May not be necessary once Python 3.5 support is dropped
+# Trap errors with importing pyplot (for testing frameworks) and
+# specify "agg" backend
+try:
+    import matplotlib.pyplot as plt
+except ImportError:
     matplotlib.use("agg")
-import matplotlib.pyplot as plt
+    import matplotlib.pyplot as plt
 
 import dwave_networkx as dnx
 
