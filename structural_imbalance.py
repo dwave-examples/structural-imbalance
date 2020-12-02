@@ -65,7 +65,7 @@ def main(sampler_type, region, show):
         params = dict(num_reads=100,
                       chain_strength=2.0,
                       )
-        sampler = EmbeddingComposite(DWaveSampler())
+        sampler = EmbeddingComposite(DWaveSampler(solver=dict(topology__type='pegasus')))
 
     else:
         raise RuntimeError("unknown solver type")
