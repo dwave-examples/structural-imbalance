@@ -71,7 +71,10 @@ def main(sampler_type, region, show):
         raise RuntimeError("unknown solver type")
 
     # use the chosen sampler (passing in the parameters)
-    edges, colors = dnx.structural_imbalance(G, sampler, **params)
+    edges, colors = dnx.structural_imbalance(G, 
+                                             sampler, 
+                                             label='Example - Structural Imbalance', 
+                                             **params)
 
     print("Found", len(edges), 'violations out of', len(G.edges), 'edges')
 
