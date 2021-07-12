@@ -84,7 +84,7 @@ def main(sampler_type, region, show):
         plt.show()
     else:
         filename = 'stuctural imbalance {} {}.png'.format(sampler_type, region)
-        plt.savefig(filename, facecolor='white', dpi=500)
+        plt.savefig(filename, facecolor='white', bbox_inches='tight')
         plt.clf()
 
 
