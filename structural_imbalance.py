@@ -22,6 +22,8 @@ except ImportError:
     matplotlib.use("agg")
     import matplotlib.pyplot as plt
 
+import dimod
+import dwave.inspector
 import dwave_networkx as dnx
 
 from neal import SimulatedAnnealingSampler
@@ -43,7 +45,10 @@ from mmp_network import global_signed_social_network
                                 case_sensitive=False))
 @click.option('--show', is_flag=True,
               help="show the plot rather than saving it")
-def main(sampler_type, region, show):
+@click.option('--inspect', is_flag=True,
+              help=("inspect the problem with the D-Wave Inspector, "
+                    "does nothing when not using the QPU with --qpu"))
+def main(sampler_type, region, show, inspect):
 
     if sampler_type is None:
         print("No solver selected, defaulting to hybrid")
@@ -65,7 +70,7 @@ def main(sampler_type, region, show):
         params = dict(num_reads=100,
                       chain_strength=2.0,
                       )
-        sampler = EmbeddingComposite(DWaveSampler())
+        sampler = dimod.TrackingComposite(EmbeddingComposite(DWaveSampler()))
 
     else:
         raise RuntimeError("unknown solver type")
@@ -75,6 +80,9 @@ def main(sampler_type, region, show):
                                              sampler, 
                                              label='Example - Structural Imbalance', 
                                              **params)
+
+    if inspect and sampler_type == 'qpu':
+        dwave.inspector.show(sampler.output)
 
     print("Found", len(edges), 'violations out of', len(G.edges), 'edges')
 
