@@ -76,9 +76,9 @@ def main(sampler_type, region, show, inspect):
         raise RuntimeError("unknown solver type")
 
     # use the chosen sampler (passing in the parameters)
-    edges, colors = dnx.structural_imbalance(G, 
-                                             sampler, 
-                                             label='Example - Structural Imbalance', 
+    edges, colors = dnx.structural_imbalance(G,
+                                             sampler,
+                                             label='Example - Structural Imbalance',
                                              **params)
 
     if inspect and sampler_type == 'qpu':
@@ -91,7 +91,7 @@ def main(sampler_type, region, show, inspect):
     if show:
         plt.show()
     else:
-        filename = 'stuctural imbalance {} {}.png'.format(sampler_type, region)
+        filename = 'structural imbalance {} {}.png'.format(sampler_type, region)
         plt.savefig(filename, facecolor='white')
         plt.clf()
 
