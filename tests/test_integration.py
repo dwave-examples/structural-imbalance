@@ -28,8 +28,8 @@ class IntegrationTests(unittest.TestCase):
         output = subprocess.check_output([sys.executable, demo_file, hardware])
         return output.decode("utf-8")
 
+    @unittest.skipIf(os.getenv('SKIP_INT_TESTS'), "Skipping integration test.")
     def test_structural_imbalance_cpu(self):
-
         output = self.runDemo("--cpu")
         output = output.upper()
         if os.getenv('DEBUG_OUTPUT'):
@@ -38,9 +38,9 @@ class IntegrationTests(unittest.TestCase):
         # Simple check to make sure a "FOUND X VIOLATIONS OUT OF Y EDEGES" message was printed
         self.assertIn("VIOLATIONS OUT OF", output)
 
+    @unittest.skipIf(os.getenv('SKIP_INT_TESTS'), "Skipping integration test.")
     @unittest.skipUnless(qpu_available(), "requires QPU")
     def test_structural_imbalance_qpu(self):
-
         output = self.runDemo("--qpu")
         output = output.upper()
         if os.getenv('DEBUG_OUTPUT'):
